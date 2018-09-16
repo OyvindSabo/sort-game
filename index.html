@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="sortGame.js"></script>
+    <script>
+      let GAME;
+  
+      const newGame = (width, height) => {
+        return new SortGame(width, height);
+      }
+
+      const render = (GAME) => {
+        
+        /* Create board and add empty cell at top left corner */
+        let board = `<center>
+                       <table style=width:80vmin;height:80vmin>
+                        <tr>
+                          <td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;">
+                            <center>
+                              <h1 style="font-size:4vmin;">
+                                &#65279;
+                              </h1>
+                            </center>
+                          </td>`;
+        
+        /* Add sort arrows above the board */
+        for (let x = 0; x < GAME.getWidth(); x++) {
+          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('col', ${x})">
+                      <center>
+                        <h1 style="font-size:4vmin;">
+                          &uarr;
+                        </h1>
+                      </center>
+                    </td>`;
+        }
+        board += `</tr>`
+
+        /* Add sort arrows to the left of the board */
+        for (let y = 0; y < GAME.getHeight(); y++) {
+          board += `<tr>
+                      <td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('row', ${y})">
+                        <center>
+                          <h1 style="font-size:4vmin;">
+                            &larr;
+                          </h1>
+                        </center>
+                      </td>`;
+          
+          /* For each cell in the row, render the corresponding number */
+          for (let x = 0; x < GAME.getWidth(); x++) {
+            board += `<td bgcolor="lightgray" style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin">
+                        <center>
+                          <h1 style="font-size:4vmin;">
+                            ${GAME.getBoard()[y][x]}
+                          </h1>
+                        </center>
+                      </td>`;
+          }
+
+          /* Add sort arrows to the right of the board */
+          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('row', ${y})">
+                      <center>
+                        <h1 style="font-size:4vmin;">
+                          &rarr;
+                        </h1>
+                      </center>
+                    </td>
+                  </tr>`;
+        }
+        
+        /* Add empty cell at bottom left corner board */
+        board += `<tr>
+                    <td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;">
+                      <center>
+                        <h1 style="font-size:4vmin;">
+                          &#65279;
+                        </h1>
+                      </center>
+                    </td>`;
+        
+        /* Add sort arrows below the board */
+        for (let x = 0; x < GAME.getWidth(); x++) {
+          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('col', ${x})">
+                      <center>
+                        <h1 style="font-size:4vmin;">
+                          &darr;
+                        </h1>
+                      </center>
+                    </td>`;
+        }
+    
+        board += '</tr></table></center>';
+        document.getElementById("board").innerHTML = board;
+      }
+
+      const init = () => {
+        GAME = newGame(4, 4);
+        render(GAME)
+      }
+
+      window.addEventListener("click", () => {
+        render(GAME);
+      });
+    </script>
+  </head>
+
+  <body onload="init()">
+    <div id="board">
+    </div>
+  </body>
+</html>
