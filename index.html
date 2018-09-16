@@ -25,7 +25,7 @@
         
         /* Add sort arrows above the board */
         for (let x = 0; x < GAME.getWidth(); x++) {
-          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('col', ${x})">
+          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('col', ${x}, 'desc')">
                       <center>
                         <h1 style="font-size:4vmin;">
                           &uarr;
@@ -38,7 +38,7 @@
         /* Add sort arrows to the left of the board */
         for (let y = 0; y < GAME.getHeight(); y++) {
           board += `<tr>
-                      <td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('row', ${y})">
+                      <td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('row', ${y}, 'desc')">
                         <center>
                           <h1 style="font-size:4vmin;">
                             &larr;
@@ -58,7 +58,7 @@
           }
 
           /* Add sort arrows to the right of the board */
-          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('row', ${y})">
+          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('row', ${y}, 'asc')">
                       <center>
                         <h1 style="font-size:4vmin;">
                           &rarr;
@@ -80,7 +80,7 @@
         
         /* Add sort arrows below the board */
         for (let x = 0; x < GAME.getWidth(); x++) {
-          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('col', ${x})">
+          board += `<td style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin;" onclick="GAME.sort('col', ${x}, 'asc')">
                       <center>
                         <h1 style="font-size:4vmin;">
                           &darr;

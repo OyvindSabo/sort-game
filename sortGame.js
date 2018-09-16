@@ -59,13 +59,23 @@ class SortGame {
     return this.width;
   }
 
-  sort (rowCol, index) {
+  sort (rowCol, index, ascDesc) {
     if (rowCol === 'col') {
-      this.board.sort(col => col[index]);
+      if (ascDesc === 'asc') {
+        this.board.sort((row1, row2) =>  row1[index] - row2[index]);
+      } else if (ascDesc === 'desc') {
+        this.board.sort((row1, row2) =>  row1[index] - row2[index]).reverse();
+      }
     } else if (rowCol === 'row') {
-      this.board = this.toListOfRows(
-                   this.toListOfColumns(
-                   this.board).sort(row => row[index]));
+      if (ascDesc === 'asc') {
+        this.board = this.toListOfRows(
+                     this.toListOfColumns(
+                     this.board).sort((row1, row2) =>  row1[index] - row2[index]));
+      } else if (ascDesc === 'desc') {
+        this.board = this.toListOfRows(
+        this.toListOfColumns(
+        this.board).sort((row1, row2) =>  row1[index] - row2[index]).reverse());
+      }
     }
   }
 
@@ -77,8 +87,8 @@ class SortGame {
 }
 /*
 let game = new SortGame(4,5);
-game.sort('col', 0);
-game.sort('row', 2);
+game.sort('col', 1);
+game.sort('col', 1);
 console.log(game.getBoard());
 console.log(game.hasWon());
 */
