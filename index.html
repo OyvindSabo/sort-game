@@ -11,6 +11,7 @@
 
       const render = (GAME) => {
         
+        let color = GAME.hasWon() ? 'lightgreen' : 'lightgray';
         /* Create board and add empty cell at top left corner */
         let board = `<center>
                        <table style=width:80vmin;height:80vmin>
@@ -48,7 +49,7 @@
           
           /* For each cell in the row, render the corresponding number */
           for (let x = 0; x < GAME.getWidth(); x++) {
-            board += `<td bgcolor="lightgray" style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin">
+            board += `<td bgcolor="${color}" style="width:${80/(GAME.getWidth()+2)}vmin;height:${80/(GAME.getHeight()+2)}vmin">
                         <center>
                           <h1 style="font-size:4vmin;">
                             ${GAME.getBoard()[y][x]}
